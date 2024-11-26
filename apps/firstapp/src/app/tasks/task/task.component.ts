@@ -1,7 +1,9 @@
+import { TaskService } from './../tasks.service';
 import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  inject,
   Input,
   Output,
 } from '@angular/core';
@@ -18,9 +20,10 @@ import { CardComponent } from '../../sharedUi/card/card.component';
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
-  @Output() complete = new EventEmitter<string>();
+
+  private taskService = inject(TaskService);
 
   onCompleteTask() {
-    this.complete.emit(this.task.id);
+    this.taskService.removeTask(this.task.id);
   }
 }

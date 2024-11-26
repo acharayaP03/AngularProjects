@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewTask } from '../task/task.model';
+import { TaskService } from '../tasks.service';
 @Component({
   selector: 'app-new-task',
   imports: [FormsModule],
@@ -8,8 +8,12 @@ import { NewTask } from '../task/task.model';
   styleUrl: './new-task.component.scss',
 })
 export class NewTaskComponent {
+  @Input({ required: true }) userId!: string;
   @Output() closeDialog = new EventEmitter<void>();
-  @Output() addNewTask = new EventEmitter<NewTask>();
+
+  // injecting task Service
+  // this will replace emitting data to parent
+  private taskService = inject(TaskService);
 
   title: string = '';
   summary = '';
@@ -25,7 +29,9 @@ export class NewTaskComponent {
       summary: this.summary,
       dueDate: this.dueDate,
     };
+    this.taskService.addUsersTask(newTask, this.userId);
+    this.onCloseDialog();
 
-    this.addNewTask.emit(newTask);
+    // this.addNewTask.emit(newTask);
   }
 }
