@@ -1,3 +1,4 @@
+import { User } from './user.model';
 import {
   Component,
   computed,
@@ -7,18 +8,11 @@ import {
   EventEmitter,
   output,
 } from '@angular/core';
-
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-user',
   imports: [],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss',
+  styleUrl: './user.component.css',
   standalone: true,
 })
 export class UserComponent {
@@ -35,6 +29,7 @@ export class UserComponent {
   // }
 
   @Input({ required: true }) user!: User;
+  @Input({ required: true }) selectedUser!: boolean;
   @Output() select = new EventEmitter<string>();
 
   // using output signal and can be replaced new EventEmitter() by below
