@@ -1,5 +1,8 @@
 @if (assignNewTask) {
-  <app-new-task (closeDialog)="closeAssignNewTaskDialog()" />
+  <app-new-task
+    (closeDialog)="closeAssignNewTaskDialog()"
+    (addNewTask)="onAddNewTask($event)"
+  />
 }
 <section id="tasks">
   <header>

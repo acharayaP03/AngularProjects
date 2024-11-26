@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { tasks as assignedUserTasks } from '../Data/appData';
+import { NewTask } from './task/task.model';
 
 @Component({
   selector: 'app-tasks',
@@ -28,6 +29,16 @@ export class TasksComponent {
 
   onAssignNewTask() {
     this.assignNewTask = true;
+  }
+
+  onAddNewTask(newTask: NewTask) {
+    this.tasks.push({
+      id: new Date().getTime().toString(),
+      userId: this.userId,
+      ...newTask,
+    });
+
+    this.assignNewTask = false;
   }
 
   closeAssignNewTaskDialog() {
