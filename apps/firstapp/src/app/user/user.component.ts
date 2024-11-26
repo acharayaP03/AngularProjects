@@ -8,25 +8,19 @@ import {
   EventEmitter,
   output,
 } from '@angular/core';
+
+import { CardComponent } from '../sharedUi/card/card.component';
+
 @Component({
   selector: 'app-user',
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css',
   standalone: true,
 })
 export class UserComponent {
   // selectedUser = signal(USERS[randomeIndex]);
-
   // imagePath = computed(() => '/assets/users/' + this.selectedUser().avatar);
-  // get imagePath() {
-  //   return '/assets/users/' + this.selectedUser.avatar;
-  // }
-
-  // onSelected() {
-  //   const randomeIndex = Math.floor(Math.random() * USERS.length);
-  //   this.selectedUser.set(USERS[randomeIndex]);
-  // }
 
   @Input({ required: true }) user!: User;
   @Input({ required: true }) selectedUser!: boolean;
