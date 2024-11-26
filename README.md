@@ -4,4 +4,4 @@ This is collection of angular projects.
 
 This collections is schafolded with pnpm for mono reop setup.
 
-## Add more inpfo below
+## Add more inpo below
