@@ -3,13 +3,14 @@ import { TaskComponent } from './task/task.component';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { tasks as assignedUserTasks } from '../Data/appData';
 import { NewTask } from './task/task.model';
+import { TaskService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
   imports: [TaskComponent, NewTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.scss',
-  standalone: true,
+  providers: [TaskService],
 })
 export class TasksComponent {
   @Input({ required: true }) userId!: string;
@@ -17,14 +18,15 @@ export class TasksComponent {
 
   assignNewTask = false;
 
-  tasks = assignedUserTasks;
+  // Dependency injection
+  constructor(private taskService: TaskService) {}
 
   get selectedUserTasks() {
-    return this.tasks.filter((t) => t.userId === this.userId);
+    return this.taskService.getUserTasks(this.userId);
   }
 
-  inCompleteTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+  onCompleteTask(id: string) {
+    this.taskService.removeTask(id);
   }
 
   onAssignNewTask() {
@@ -32,11 +34,7 @@ export class TasksComponent {
   }
 
   onAddNewTask(newTask: NewTask) {
-    this.tasks.push({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      ...newTask,
-    });
+    this.taskService.addUsersTask(newTask, this.userId);
 
     this.assignNewTask = false;
   }
