@@ -1,13 +1,5 @@
 import { User } from './user.model';
-import {
-  Component,
-  computed,
-  Input,
-  signal,
-  Output,
-  EventEmitter,
-  output,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { CardComponent } from '../sharedUi/card/card.component';
 
