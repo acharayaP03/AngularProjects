@@ -1,8 +1,11 @@
+@if (assignNewTask) {
+  <app-new-task (closeDialog)="closeAssignNewTaskDialog()" />
+}
 <section id="tasks">
   <header>
     <h3>{{ name }}</h3>
     <menu>
-      <button>Assign task</button>
+      <button (click)="onAssignNewTask()">Assign task</button>
     </menu>
   </header>
   <ul>
