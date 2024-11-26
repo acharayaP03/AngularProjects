@@ -7,7 +7,7 @@ import { CardComponent } from '../sharedUi/card/card.component';
   selector: 'app-user',
   imports: [CardComponent],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.css',
+  styleUrl: './user.component.scss',
   standalone: true,
 })
 export class UserComponent {

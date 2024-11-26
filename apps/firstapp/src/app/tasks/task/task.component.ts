@@ -6,17 +6,19 @@ import {
   inject,
   Input,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { type Task } from './task.model';
 import { CardComponent } from '../../sharedUi/card/card.component';
+import { ButtonComponent } from '../../sharedUi/button/button.component';
 
 @Component({
   selector: 'app-task',
-  imports: [CardComponent, DatePipe],
+  imports: [CardComponent, DatePipe, ButtonComponent],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TaskComponent {
   @Input({ required: true }) task!: Task;
